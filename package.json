@@ -1,0 +1,31 @@
+{
+  "name": "cabbage",
+  "version": "1.0.0",
+  "description": "For the love of Sauerkraut",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connecthedots/cabbage.git"
+  },
+  "keywords": [
+    "sauerkraut",
+    "shopping",
+    "cart",
+    "eCommerce",
+    "trial"
+  ],
+  "author": "connecthedots",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/connecthedots/cabbage/issues"
+  },
+  "homepage": "https://github.com/connecthedots/cabbage#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4"
+  }
+}
