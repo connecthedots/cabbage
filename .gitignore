@@ -58,3 +58,7 @@ typings/
 
 .env
 
+#images
+*.jpg
+*.png
+

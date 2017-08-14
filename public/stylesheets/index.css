@@ -1,4 +1,27 @@
-body{
+body, html{
+	height:100%
+	width:100%;
+}
+
+#top-section {
+	background:url(../assets/bg0.png); 
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin: 0 auto;
 	font-family: sans-serif;
-	background-color: gray;
+	min-height:800px;
+}
+
+#mid-section {
+	height:500px;
+	width:100%;
+	background-color: rgb(211,255,245);
+}
+
+#bottom-section{
+	background-color: #1b1c1d;
+}
+
+#bottom-section .item{
+	color: rgb(211,255,245);
 }

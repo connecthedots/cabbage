@@ -4,18 +4,20 @@ const express = require("express"),
 
 //Setting up express
 app.set("view engine", "ejs");
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}))
 
+//ROUTES
+const productRoutes = require("./routes/product.js");
+app.use("/shop", productRoutes);
 
+//Root Routes
 app.get("/", function(req,res){
 	res.render("index");
 })
-
-app.get("/index", function(req, res){
-	res.send("This is where the saurkraut products will be")
+app.get("*", function(req,res){
+	res.send("This page does not exist.")
 })
-
 app.listen(3000, function(){
 	console.log("Server is running")
 })
