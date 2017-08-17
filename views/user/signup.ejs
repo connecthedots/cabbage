@@ -1,6 +1,14 @@
 <%- include ../partials/top %>
 <div class= "ui main left aligned container segment">
 	<div class="ui huge header">Make a new account</div>
+	<!-- Error alert -->
+	<div class="container">
+	    <% if (error && error.length >0) { %>
+	        <div class="ui warning message" role="alert">
+	            <%= error %>
+	        </div>
+	    <% } %>
+	</div>
 	<div class="ui form">
 		<form action="/user/signup" method="POST">
 			<input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -8,16 +16,16 @@
 			<label>Name</label>
 			<div class="two fields">
 			  <div class="field">
-			    <input type="text" name="user[firstName]" placeholder="First Name">
+			    <input type="text" name="firstName" placeholder="First Name">
 			  </div>
 			  <div class="field">
-			    <input type="text" name="user[lastName]" placeholder="Last Name">
+			    <input type="text" name="lastName" placeholder="Last Name">
 			  </div>
 			</div>
 			</div>
 			<div class="field">
 				<label for="email">Email</label>
-				<input type="email" name="user[email]" placeholder="Enter your email address">				
+				<input type="email" name="username" placeholder="Enter your email address">				
 			</div>
 			<div class="field">
 				<label for="password">Password</label>
