@@ -5,12 +5,14 @@ const express = require("express"),
 	session = require("express-session"),
 	passport = require("passport"),
 	LocalStrategy = require("passport-local"),
-	flash = require("connect-flash")
+	flash = require("connect-flash"),
+	validator = require("express-validator")
 
 //Setting up express apps
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(validator()); //must go after body parser since it uses body content 
 app.use(session({secret: "this is the secret key it goes meow",
 				resave: false,
 				saveUninitialized: false}))
@@ -26,7 +28,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(function(req,res,next){
-	res.locals.error = req.flash("error");
+	res.locals.errors = req.flash("error");
 	next();
 })
 

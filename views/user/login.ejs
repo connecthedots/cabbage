@@ -1,6 +1,6 @@
 <%- include ../partials/top %>
 <div class= "ui main left aligned container segment">
-	<div class="ui huge header">Make a new account</div>
+	<div class="ui huge header">Log in</div>
 	<!-- Error alert -->
 	<div class="container">
 	    <% if (errors && errors.length >0) { %>
@@ -12,30 +12,20 @@
 	    <% } %>
 	</div>
 	<div class="ui form">
-		<form action="/user/signup" method="POST">
+		<form action="/user/login" method="POST">
 			<input type="hidden" name="_csrf" value="<%= csrfToken %>">
-			<div class="required field">
-			<label>Name</label>
-			<div class="two fields">
-			  <div class="field">
-			    <input type="text" name="firstName" placeholder="First">
-			  </div>
-			  <div class="required field">
-			    <input type="text" name="lastName" placeholder="Last">
-			  </div>
-			</div>
-			</div>
 			<div class="required field">
 				<label for="email">Email</label>
 				<input type="email" name="username" placeholder="Enter your email address">				
 			</div>
 			<div class="required field">
 				<label for="password">Password</label>
-				<small>Minimum length 6 characters</small>
 				<input type="password" name="password" placeholder="Choose a password">				
 			</div>
 			<button class="ui huge green button" type="submit">Sign Up</button>
 		</form>
+		<p>Don't have an account? <a href="/user/signup">Register here</a></p>
+		<%= csrfToken %>
 	</div>
 </div>
 <%- include ../partials/bottom %>
