@@ -6,90 +6,30 @@
 
 	<div>
 		<div class="ui stackable three column grid">
+			<% products.forEach(function(product){ %>
 		  	<div class="column">
 			    <div class="ui card">
 			    	<div class="content">
 			    		<a class="header" href="#">
-			    			Red Cabbage
+			    			<%= product.name %> 
 			    		</a>
 			    	</div>
 			    	<!-- Image -->
-			      	<img class="ui fluid image" src="assets/redkraut.jpg">
+			      	<img class="ui fluid image" src="<%= product.image %>">
 			      	<!-- Bottom -->
 		      		<div class="extra content">
 				      	<div class="meta">
-				      		Some description goes here
+				      		<%= product.description %> 
 				      	</div>
 						<div class="ui left labeled right floated button" tabindex="0">
-				  			<p class="ui basic label">$9.95</p>
+				  			<p class="ui basic label">$<%= product.price %> </p>
 				  			<a id="shopbutton" class="ui small green button" href="#">Add to cart</a>
 						</div>		      	
 		      		</div>
 			    </div>
 		  	</div>
-		  	<div class="column">
-			    <div class="ui card">
-			    	<div class="content">
-			    		<a class="header" href="#">
-			    			Savoy Cabbage
-			    		</a>
-			    	</div>
-			    	<!-- Image -->
-			      	<img class="ui fluid image" src="assets/savoykraut1.jpg">
-			      	<!-- Bottom -->
-		      		<div class="extra content">
-				      	<div class="meta">
-				      		Some description goes here
-				      	</div>
-						<div class="ui left labeled right floated button" tabindex="0">
-				  			<p class="ui basic label">$8.95</p>
-				  			<a id="shopbutton" class="ui small green button" href="#">Add to cart</a>
-						</div>		      	
-		      		</div>
-			    </div>
-		  	</div>
-		  	<div class="column">
-			    <div class="ui card">
-			    	<div class="content">
-			    		<a class="header" href="#">
-			    			Green Cabbage
-			    		</a>
-			    	</div>
-			    	<!-- Image -->
-			      	<img class="ui fluid image" src="assets/greenkraut.jpg">
-			      	<!-- Bottom -->
-		      		<div class="extra content">
-				      	<div class="meta">
-				      		Some description goes here
-				      	</div>
-						<div class="ui left labeled right floated button" tabindex="0">
-				  			<p class="ui basic label">$6.95</p>
-				  			<a id="shopbutton" class="ui small green button" href="#">Add to cart</a>
-						</div>		      	
-		      		</div>
-			    </div>
-		  	</div>
-		  	<div class="column">
-			    <div class="ui card">
-			    	<div class="content">
-			    		<a class="header" href="#">
-			    			Cabbage
-			    		</a>
-			    	</div>
-			    	<!-- Image -->
-			      	<img class="ui fluid image" src="assets/kraut1.jpg">
-			      	<!-- Bottom -->
-		      		<div class="extra content">
-				      	<div class="meta">
-				      		Some description goes here
-				      	</div>
-						<div class="ui left labeled right floated button" tabindex="0">
-				  			<p class="ui basic label">$6.95</p>
-				  			<a id="shopbutton" class="ui small green button" href="#">Add to cart</a>
-						</div>		      	
-		      		</div>
-			    </div>
-		  	</div>		  		
+		  	<% }) %>
+	  		
 		</div>		
 	</div>
 </div>

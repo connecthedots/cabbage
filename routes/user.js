@@ -4,17 +4,36 @@ const express = require("express"),
 	passport = require("passport"),
 	User = require("../models/user")
 
-//Middleware for CSRF protection	
+//MIDDLEWARE
+
+//CSRF protection	
 router.use(csrf());
 
-//New user sign up page
-router.get("/signup", function(req,res){
+// Needs to be logged in to access
+function isLoggedIn(req,res,next){
+	if (req.isAuthenticated()){
+		return next();
+	} else {
+		res.redirect("/user/login");
+	}
+};
 
+//Signed in user should not access login or signup routes
+function notLoggedIn(req,res,next){
+	if (!req.isAuthenticated()){
+		return next();
+	} else {
+		res.redirect("/user/profile");
+	}
+};
+
+//SIGN UP
+router.get("/signup", notLoggedIn, function(req,res){
 	res.render("user/signup", {csrfToken: req.csrfToken()});
 })
 
 //Post new user
-router.post("/signup", function(req,res){
+router.post("/signup", notLoggedIn, function(req,res){
 	//Validate form info 
 	req.checkBody("username", "Invalid email entered.").notEmpty().isEmail();
 	req.checkBody("password", "Password should be at least 6 characters in length.").notEmpty().isLength({min:6});
@@ -47,18 +66,26 @@ router.post("/signup", function(req,res){
 	});
 });
 
-router.get("/profile", function(req,res){
+//PROFILE
+router.get("/profile", isLoggedIn, function(req,res){
 	res.render("user/dashboard");
 });
 
-router.get("/login", function(req,res){
+//LOG IN
+router.get("/login", notLoggedIn, function(req,res){
 	res.render("user/login", {csrfToken: req.csrfToken()})
 });
 
-router.post("/login", passport.authenticate("local", {
+router.post("/login", notLoggedIn, passport.authenticate("local", {
 	successRedirect: "profile",
 	failureRedirect: "login",
 	failureFlash: true
 }));
+
+//LOG OUT
+router.get("/logout", isLoggedIn, function(req,res){
+	req.logout();
+	res.redirect("/shop");
+})
 
 module.exports = router

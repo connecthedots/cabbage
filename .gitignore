@@ -62,3 +62,6 @@ typings/
 *.jpg
 *.png
 
+#README
+README.md
+

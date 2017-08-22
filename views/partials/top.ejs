@@ -16,8 +16,12 @@
 			<a class="item" href="/about">About</a>
 			<a class="item" href="/contact">Contact</a>
 			<div class="right menu">
+				<% if (!user){ %>
+				<a class="item" href="/user/signup">Sign Up</a>				
 				<a class="item" href="/user/login">Log in</a>
-				<a class="item" href="/user/signup">Sign Up</a>
+				<% } else { %>
+				<a class="item" href="/user/logout">Log Out</a>	
+				<% } %>			
 				<a class="item" href="#">Cart</a>
 			</div>
 		</div>		
