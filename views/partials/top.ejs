@@ -4,25 +4,35 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
 <!-- 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/icon.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="../../stylesheets/index.css">
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 	<title></title>
 </head>
 <body>
-	<div class="container">
-		<div class="ui large stackable menu">
-			<div class="header item">
-				<a href="/"><i class="leaf icon"></i>THE PIG'S KRAUT</a>
-			</div>
-			<a class="item" href="/shop">Shop</a>
-			<a class="item" href="/about">About</a>
-			<a class="item" href="/contact">Contact</a>
-			<div class="right menu">
-				<% if (!user){ %>
-				<a class="item" href="/user/signup">Sign Up</a>				
-				<a class="item" href="/user/login">Log in</a>
-				<% } else { %>
-				<a class="item" href="/user/logout">Log Out</a>	
-				<% } %>			
-				<a class="item" href="#">Cart</a>
-			</div>
-		</div>		
+	<div class="ui large stackable menu">
+		<div class="header item">
+			<a href="/"><i class="leaf icon"></i>THE PIG'S KRAUT</a>
+		</div>
+		<a class="item" href="/shop">Shop</a>
+		<a class="item" href="/about">About</a>
+		<a class="item" href="/contact">Contact</a>
+		<div class="right menu">
+			<% if (!user){ %>
+			<a class="item" href="/user/signup">Sign Up</a>				
+			<a class="item" href="/user/login">Log in</a>
+			<% } else { %>
+			<a class="item" href="/user/logout">Log Out</a>	
+			<% } %>			
+			<a class="item" href="/shop/cart">Cart
+				<div class="ui teal circular label">
+					<% if (!session.cart){ %>
+						0
+					<% } else {%>
+						<%= session.cart.totalQty %>
+					<% } %>
+				</div>
+			</a>
+		</div>
 	</div>

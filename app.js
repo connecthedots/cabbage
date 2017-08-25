@@ -18,7 +18,7 @@ app.use(session({secret: "this is the secret key it goes meow",
 				resave: false,
 				saveUninitialized: false,
 				store: new MongoStore({mongooseConnection: mongoose.connection}), 
-				cookie: {maxAge: 10 * 60 *1000} //How long the session lasts on cookie (in ms)
+				cookie: {maxAge: 60 * 60 *1000} //How long the session lasts on cookie (in ms)
 			})
 );
 app.use(flash()); //must go after session is initialized
@@ -56,12 +56,15 @@ app.use("/user", userRoutes);
 //Root
 app.get("/", function(req,res){
 	res.render("index");
-})
+});
 
+app.get("/about", function(req,res){
+	res.render("about");
+});
 
 app.get("*", function(req,res){
 	res.send("This page does not exist.")
-})
+});
 
 //Server listening to requests
 app.listen(3000, function(){

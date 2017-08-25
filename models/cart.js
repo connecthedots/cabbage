@@ -1,17 +1,15 @@
 //Exports constructor function, creates shopping cart object
-module.exports = function Cart(cartItems){
-	this.basket = cartItems;
+module.exports = function Cart(priorBasket){
+	this.basket = priorBasket;
 	this.totalQty = 0;
 	this.totalPrice = 0;
 
-	//quick way to check if cart is empty
-	console.log(Object.keys(cartItems).length !==0)
-	if (Object.keys(cartItems).length !==0) {
-        for (var key in cartItems) {
-            this.totalQty += cartItems[key].aggQuantity;
-            this.totalPrice += cartItems[key].aggPrice;
-            console.log("==========" + this.totalQty)
-            console.log("==========" + this.totalPrice)
+	//if cart already exists, use the prior quantity & price
+	//quick way to check if cart is empty, consider refactoring
+	if (Object.keys(priorBasket).length !==0) {
+        for (var key in priorBasket) {
+            this.totalQty += priorBasket[key].aggQuantity;
+            this.totalPrice += priorBasket[key].aggPrice;
         }
     }
 	//each time we add a product, we take previous version of shopping cart
@@ -34,7 +32,7 @@ module.exports = function Cart(cartItems){
 
     this.makeArray = function() {
         var arr = [];
-        for (var id in this.basket) {
+        for (var productId in this.basket) {
         	//push each aggregated product to array
             arr.push(this.basket[productId]);
         }

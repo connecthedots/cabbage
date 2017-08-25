@@ -57,8 +57,8 @@ router.get("/add/:productId", function(req, res){
 			res.redirect("/shop");
 		} else {
 			//checks if there is a cart in sessions already,
-			//If yes, set the basket of the previous cart as starting basket
-			//If not, assign empty object as starting basket
+				//If yes, set the basket of the previous cart as starting basket
+				//If not, assign empty object as starting basket
 			var createdCart = new Cart(req.session.cart ? req.session.cart.basket : {});
 			//add the product to cart
 			createdCart.add(product, product._id);
@@ -71,6 +71,29 @@ router.get("/add/:productId", function(req, res){
 	});
 });
 
+router.get("/cart", function(req,res){
+	//check if cart exists
+	if (!req.session.cart){
+		return res.render("cart/viewCart", {cart: null});
+	}
+	//retrieve the methods on Cart obj
+	let cart = new Cart(req.session.cart.basket);
+	res.render("cart/viewCart", {cart: cart.makeArray()});
+});
+
+router.get("/checkout", function(req,res){
+	if (!req.session.cart){
+		return res.redirect("/cart");
+	}
+	res.render("cart/checkout", {totalPrice: req.session.cart.totalPrice})
+});
+
+router.post("/checkout", function(req,res){
+	if (!req.session.cart){
+		return res.redirect("/cart");
+	}
+	res.send("This is the Post page for check outs. SHOW ORDER CONFIRMATION HERE")
+});
 
 
 module.exports = router

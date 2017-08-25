@@ -25,3 +25,11 @@ body, html{
 #bottom-section .item{
 	color: rgb(211,255,245);
 }
+
+.pad-top {
+	margin-top: 6em;
+}
+
+.mid-align {
+	text-align: center;
+}

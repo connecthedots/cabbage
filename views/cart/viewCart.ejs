@@ -1,0 +1,57 @@
+<%- include ../partials/top %>
+<% if (cart){%>
+<div class="ui main container pad-top">
+<h1 class="ui centered header">
+	<i class="teal shopping basket icon"></i>
+	My shopping basket
+</h1>
+<div class="ui centered grid">
+	<div class="twelve wide column">
+		<table class="ui teal striped table">
+			<thead>
+				<tr>
+					<th class="collapsing">Product</th>
+					<th class="collapsing center aligned">Amount</th>
+					<th class="collapsing right aligned">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- logic for inputting each item -->			
+				<% cart.forEach(function(product){ %>
+				<tr>
+					<td class="collapsing">
+						<a href="#"><img class="ui left floated small rounded spaced image"src="/<%=product.productModel.image%>"></a>
+
+						<div class="ui header">
+						<%= product.productModel.name %>
+						</div>
+						$ <%= product.productModel.price %>
+
+					</td>
+					<td class="center aligned"><%= product.aggQuantity %></td>
+					<td class="right aligned">$ <%= product.aggPrice.toFixed(2) %></td>
+				</tr>
+				<% }) %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th colspan="2"><strong>Total</strong></th>
+					<th class="right aligned">
+						<strong>$ <%=session.cart.totalPrice.toFixed(2)%></strong>
+					</th>
+				</tr>				
+			</tfoot>
+		</table>
+
+		<a href="/shop/checkout"><button class="ui button teal" type="submit"> Checkout</button></a>
+		<a href="/shop"><button class="ui button basic" type="submit"> Continue shopping</button></a>
+	</div>
+</div>
+
+</div>
+<% } else {%>
+<div class="ui main container pad-top">
+	<p>Oops, looks like there's nothing in your cart</p>
+</div>
+<% } %>
+<%- include ../partials/bottom %>
