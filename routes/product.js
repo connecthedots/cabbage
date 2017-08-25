@@ -1,5 +1,6 @@
 const express = require("express"),
 	router = express.Router(),
+	stripe = require("stripe")("sk_test_VL0eHGP9MSmAmXJ56Zc3fuC8"),
 	Products = require("../models/product"),
 	Cart = require("../models/cart")
 
@@ -92,7 +93,25 @@ router.post("/checkout", function(req,res){
 	if (!req.session.cart){
 		return res.redirect("/cart");
 	}
-	res.send("This is the Post page for check outs. SHOW ORDER CONFIRMATION HERE")
+	stripe.charges.create({
+	    amount: req.session.cart.totalPrice * 100, //Given in cents
+	    currency: "usd", 
+	    source: req.body.verifiedToken, // obtained front client side Stripe.js
+	    description: "Test data here"
+	}, function(err, charge) {
+	    // asynchronously called
+	    if(err){
+	    	//display error
+	    	req.flash("error", err.message);
+	    	console.log(err)
+	    	res.redirect("shop/checkout");
+	    } else {
+	    	//clear shopping cart
+	    	var order = req.session.cart
+	    	// req.session.cart = null;
+	    	res.render("cart/confirm", {order: order});
+	    }
+	});
 });
 
 
