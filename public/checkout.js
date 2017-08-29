@@ -27,7 +27,7 @@ $form.submit(function(submission){
 	  cvc: $('#card-cvc').val(),
 	  exp_month: $('#card-exp-month').val(),
 	  exp_year: $('#card-exp-year').val(),
-	  name: $('#full-name').val() 
+	  name: $('#firstName').val() 
 	}, stripeResponseHandler);
 	return false;
 });

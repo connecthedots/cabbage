@@ -1,5 +1,5 @@
 <%- include ../partials/top %>
-<% if (cart){%>
+<% if (cart && cart.length !==0){%>
 <div class="ui main container pad-top">
 <h1 class="ui centered header">
 	<i class="teal shopping basket icon"></i>
@@ -28,7 +28,10 @@
 						$ <%= product.productModel.price %>
 
 					</td>
-					<td class="center aligned"><%= product.aggQuantity %></td>
+					<td class="center aligned"><%= product.aggQuantity %> 
+						<a href="/shop/reduce/<%= product.productModel._id %>">Reduce by 1</a>
+						<a href="/shop/delete/<%= product.productModel._id %>">Delete</a>
+					</td>
 					<td class="right aligned">$ <%= product.aggPrice.toFixed(2) %></td>
 				</tr>
 				<% }) %>
@@ -51,7 +54,7 @@
 </div>
 <% } else {%>
 <div class="ui main container pad-top">
-	<p>Oops, looks like there's nothing in your cart</p>
+	<p class="ui huge header">Oops, your shopping cart is empty</p>
 </div>
 <% } %>
 <%- include ../partials/bottom %>

@@ -30,6 +30,32 @@ module.exports = function Cart(priorBasket){
 
 	}
 
+	this.reduce = function(productId){
+		if (!this.basket[productId]){
+			throw "Error! Shopping cart does not contain item with the specified id";
+		} else {
+			var aggItem = this.basket[productId];
+			aggItem.aggQuantity--;
+			aggItem.aggPrice -= aggItem.productModel.price;
+			this.totalQty--;
+			this.totalPrice -= aggItem.productModel.price;
+			//remove item group when quantity is 0
+			if (aggItem.aggQuantity <= 0){
+				delete this.basket[productId];
+			}
+		}
+	}
+
+	this.delete = function(productId){
+		if (!this.basket[productId]){
+			throw "Error! Shopping cart does not contain item with the specified id";
+		} else {
+			this.totalQty -= this.basket[productId].aggQuantity
+			this.totalPrice -= this.basket[productId].aggPrice
+			delete this.basket[productId]
+		}
+	}
+
     this.makeArray = function() {
         var arr = [];
         for (var productId in this.basket) {

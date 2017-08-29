@@ -6,7 +6,15 @@
 		  	<div class="sub header">Your total amount: $<%= totalPrice.toFixed(2) %></div>
 		</div>		
 	</div>
-
+	<div class="container">
+	    <% if (errors && errors.length >0) { %>
+	    	<% errors.forEach(function(error){ %>
+	        <div class="ui warning message" role="alert">
+	            <%= error %>
+	        </div>
+	        <% }) %>
+	    <% } %>
+	</div>
 	<!-- Steps -->
 	<div class="ui unstackable mini steps">
 	  	<div class="step">
@@ -32,33 +40,37 @@
 	</div>
 	<!-- FORM -->
 	<form action="/shop/checkout" method="post" class="ui form" id="checkout">
-	  	<h4 class="ui dividing header">Shipping Information</h4>
+	  	<h4 class="ui dividing header">Customer Information</h4>
 	  	<div class="field">
 		 	<label>Name</label>
 		 	<div class="two fields">
 				<div class="field">
-			  		<input type="text" id="first-name" name="first-name" placeholder="First Name">
+			  		<input type="text" id="firstName" name="firstName" placeholder="First Name">
 				</div>
 				<div class="field">
-				  	<input type="text" name="shipping[last-name]" placeholder="Last Name">
-				</div>
+				  	<input type="text" id="lastName" name="lastName" placeholder="Last Name">
+				</div>				
 		 	</div>
 	  	</div>
+		<div class="field">
+		  	<input type="text" name="email" placeholder="Email address">
+		  	<small> We use this to send you information about your order</small>
+		</div>	  	
 	  	<div class="field">
 		 	<label>Billing Address</label>
 		 	<div class="fields">
 				<div class="twelve wide field">
-			  		<input type="text" name="shipping[address]" placeholder="Street Address">
+			  		<input type="text" name="address[street]" placeholder="Street Address">
 				</div>
 				<div class="four wide field">
-			  		<input type="text" name="shipping[address-2]" placeholder="Apt or Unit">
+			  		<input type="text" name="address[unit]" placeholder="Apt or Unit">
 				</div>
 		 	</div>
 	  	</div>
 	  	<div class="three fields">
 	  		<div class="field">
 				<label>State</label>
-				<select class="ui fluid search selection dropdown">
+				<select name="address[state]" class="ui fluid search selection dropdown">
 			  	<option value="">State</option>
 				<option value="AL">Alabama</option>
 				<option value="AK">Alaska</option>
@@ -115,7 +127,7 @@
 		 	</div>
 			<div class="field">
 				<label>Zip Code</label>
-			  	<input type="text" name="zip" placeholder="Zip">
+			  	<input type="text" name="address[zip]" maxlength="5" placeholder="Zip">
 	  		</div>			
 	  		<div class="field">
 				<label>Country</label>

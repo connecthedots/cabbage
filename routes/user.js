@@ -2,7 +2,9 @@ const express = require("express"),
 	router = express.Router(),
 	csrf = require("csurf"),
 	passport = require("passport"),
-	User = require("../models/user")
+	User = require("../models/user"),
+	Order = require("../models/order"),
+	Cart = require("../models/cart")
 
 //MIDDLEWARE
 
@@ -68,7 +70,26 @@ router.post("/signup", notLoggedIn, function(req,res){
 
 //PROFILE
 router.get("/profile", isLoggedIn, function(req,res){
-	res.render("user/dashboard");
+	//fetch the order information from user
+	Order.find({user: req.user._id}, function(err, orders){
+		if (err){
+			console.log("Error looking up orders by user id");
+		} else {
+			orders.forEach(function(order){
+				//Create a new Cart, to add the makeArray function onto the cart object stored in order
+				//**refactoring out makeArray function to middleware?
+				
+				var orderCart = new Cart(order.cart.basket);
+				console.log("Printing orderCart ==========")
+				console.log(orderCart)
+				//store back onto order object
+				order.orderCart = orderCart				
+			});
+			console.log("==============FINAL=================")
+			console.log(orders)
+			res.render("user/dashboard", {orderList: orders});
+		}
+	}); 
 });
 
 //LOG IN
@@ -77,10 +98,18 @@ router.get("/login", notLoggedIn, function(req,res){
 });
 
 router.post("/login", notLoggedIn, passport.authenticate("local", {
-	successRedirect: "profile",
 	failureRedirect: "login",
 	failureFlash: true
-}));
+}), function(req, res){
+	//check if there is a prior page to redirect to after signing in
+	if (req.session.back){
+		let back = req.session.back
+		console.log(req.session.back)
+		req.session.back = null;
+		return res.redirect("/shop" + back);
+	}
+	res.redirect("/user/profile")
+});
 
 //LOG OUT
 router.get("/logout", isLoggedIn, function(req,res){

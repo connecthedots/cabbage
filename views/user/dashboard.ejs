@@ -1,3 +1,19 @@
 <%- include ../partials/top %>
-<h1>This is the dashboard page</h1>
+<div class="ui container centered grid">
+	<div class="twelve wide column">
+		<% orderList.forEach(function(order){ %>
+			<div class="ui divider">Order: <%= order._id %></div>
+			<p>Total Items Purchased: <%= order.orderCart.totalQty %></p>			
+			<% var array = order.orderCart.makeArray() %>
+			<% array.forEach(function(item){ %>
+			<ul>
+				<li><%= item.productModel.name %></li>
+				<li><strong>Total Price: $<%= item.aggPrice.toFixed(2) %></strong></li>
+				<li><em>Units: <%= item.aggQuantity %></em></li>
+			</ul>
+			<% }) %>
+		<% }) %>
+	</div>
+</div>
+
 <%- include ../partials/bottom %>
