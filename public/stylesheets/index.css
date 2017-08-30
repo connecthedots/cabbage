@@ -1,21 +1,36 @@
 body, html{
-	height:100%
-	width:100%;
+	height:100%;
+	width: 100%;
+	background-color:rgba(241, 239, 237, 1);
+	font-family: Comfortaa
+}
+
+.pad-top {
+	padding-top: 6rem;
+}
+
+.pad-bottom{
+	padding-bottom:6rem;
+}
+
+.mid-align {
+	text-align: center;
 }
 
 #top-section {
-	background:url(../assets/bg0.png); 
+	background:url(../assets/splash/krautandcarrot.jpg); 
 	background-size: cover;
 	background-repeat: no-repeat;
-	margin: 0 auto;
-	font-family: sans-serif;
+	margin:-1em auto;
 	min-height:800px;
+	text-align: center;
+	padding: 100px 0;
 }
 
 #mid-section {
 	height:500px;
 	width:100%;
-	background-color: rgb(211,255,245);
+	background-color: rgba(241, 239, 237, 1);
 }
 
 #bottom-section{
@@ -26,10 +41,72 @@ body, html{
 	color: rgb(211,255,245);
 }
 
-.pad-top {
-	margin-top: 6em;
+.main-content{
+	margin-right: auto;
+	margin-left: auto;
+	/*border: 5px solid rgba(255,255,255, 0.3);*/
+	padding:0 50px;
+	background-color:rgba(108, 210, 146, .8);
+	max-width: 100%;
+	height: 500px;
 }
 
-.mid-align {
+#right-content{
+	margin: 0 auto;
+	float: right;
+	max-width: 50%
+}
+
+#right-content-box{
+	/*border-radius: 20px;*/
+	background-color: rgba(0, 0, 0, 0.6);
+	font-size: 5rem;
+	font-family: Comfortaa, sans-serif;
+	font-weight:700;
+	text-align: right;
+	line-height: 1.5em;	
+	width: 100%;
+}
+
+#right-content div:first-child{
+	padding: 10px 20px;
+	color:rgba(241, 239, 237, .8);
+	text-shadow: initial;
+}
+
+#right-content div{
+	padding: 10px 20px;
+	color:rgba(108, 210, 146, .8);
+}
+
+#left-content{
+	margin: 0 auto;
+	float: left;
+	font-size: 5rem;
+	font-family: Lato, sans-serif;
+	color: #fff;
+	max-width: 50%
+}
+
+#left-content-box{
+	font-weight:700;
 	text-align: center;
+	line-height: 1.5em;
+	border-radius: 20px;
+	width: 100%;
+}
+
+#nav-bar{
+	background-color: rgba(255, 255, 255, 1);
+	font-family: Lato;
+	border-bottom: thick solid rgba(51, 146, 142, 1);
+}
+
+#link{
+	color: rgba(51, 146, 142, 1);
+}
+
+#menu-link{
+	font-weight: 700;
+	color: rgba(51, 146, 142, 1);
 }

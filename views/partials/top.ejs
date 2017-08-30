@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-<!-- 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/icon.min.css"> -->
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa|Lato" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../stylesheets/index.css">
 	<script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -11,21 +11,22 @@
 	<title></title>
 </head>
 <body>
-	<div class="ui large stackable menu">
+	<div id="nav-bar" class="ui large secondary stackable menu">
 		<div class="header item">
-			<a href="/"><i class="leaf icon"></i>THE PIG'S KRAUT</a>
+			<a href="/" id="link"><i class="leaf icon"></i>THE PIG'S KRAUT</a>
 		</div>
-		<a class="item" href="/shop">Shop</a>
-		<a class="item" href="/about">About</a>
-		<a class="item" href="/contact">Contact</a>
+		<a id="menu-link" class="item" href="/shop">Shop</a>
+		<a id="menu-link" class="item" href="/about">About</a>
+		<a id="menu-link" class="item" href="/contact">Contact</a>
 		<div class="right menu">
 			<% if (!user){ %>
-			<a class="item" href="/user/signup">Sign Up</a>				
-			<a class="item" href="/user/login">Log in</a>
+			<a id="menu-link" class="item" href="/user/signup">Sign Up</a>				
+			<a id="menu-link" class="item" href="/user/login">Log in</a>
 			<% } else { %>
-			<a class="item" href="/user/logout">Log Out</a>	
+			<a id="menu-link" class="item" href="/user/logout">Log Out</a>	
+			<a id="menu-link" class="item" href="/user/profile">My Dashboard</a>	
 			<% } %>			
-			<a class="item" href="/shop/cart">Cart
+			<a id="menu-link" class="item" href="/shop/cart">Cart
 				<div class="ui teal circular label">
 					<% if (!session.cart){ %>
 						0
